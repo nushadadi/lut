@@ -1,0 +1,61 @@
+
+
+spring:
+  mvc:
+    view:
+      prefix: /WEB-INF/jsp/
+      suffix: .jsp
+  datasource:
+    master:
+      jdbc-url: jdbc:mysql://192.168.193.130:3306/zcm?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=GMT%2B8
+      username: root
+      password: root
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      type: com.alibaba.druid.pool.DruidDataSource
+    slave:
+      jdbc-url: jdbc:mysql://192.168.193.128:3306/zcm?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=GMT%2B8
+      username: root
+      password: root
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      type: com.alibaba.druid.pool.DruidDataSource
+  redis:
+    database: 0
+    cluster:
+      nodes:
+        - 192.168.193.128:6379
+        - 192.168.193.128:6380
+        - 192.168.193.128:6381
+        - 192.168.193.128:6382
+        - 192.168.193.130:6379
+        - 192.168.193.130:6380
+        - 192.168.193.130:6381
+        - 192.168.193.130:6382
+      max-redirects: 4
+    jedis:
+      pool:
+        max-active: 200
+        max-wait: -1
+        max-idle: 20
+        min-idle: 0
+    timeout: 601000ms
+    cache:
+      methodnamelist:
+        - add
+        - update
+        - delete
+      targetnamelist:
+      defaultcacheexpiretime: 3600
+
+
+  http:
+    encoding:
+      charset: UTF-8
+      force: true
+      enabled: true
+
+server:
+  port: 8080
+  tomcat:
+    uri-encoding: utf-8
+  servlet:
+    context-path: /lut
